@@ -1,7 +1,12 @@
-import re
+# _*_ coding=utf-8 _*_
+
+import re 
+
+from regions import regions
 
 
-def checkIdcard(idcard):
+def checkIdcard(idcard): 
+
     Errors=['验证通过!','身份证号码位数不对!','身份证号码出生日期超出范围或含有非法字符!',
             '身份证号码校验错误!','身份证地区非法!']
 
@@ -12,7 +17,7 @@ def checkIdcard(idcard):
           "50":"重庆","51":"四川","52":"贵州","53":"云南","54":"西藏",
           "61":"陕西","62":"甘肃","63":"青海","64":"宁夏","65":"新疆",
           "71":"台湾","81":"香港","82":"澳门","91":"国外"}
-
+          
     idcard=str(idcard)  
     idcard=idcard.strip() 
     idcard_list=list(idcard)  
@@ -47,7 +52,7 @@ def checkIdcard(idcard):
             
             if(M == idcard_list[17]):
                 print( Errors[0])
-                print('籍贯:'+area[(idcard)[0:2]])
+                print ('地区:'+regions[(idcard)[0:6]])
                 print ('生日:'+year+'年'+ month +'月'+day+'日')
                 if int(idcard_sex)%2 == 0:
                     print ('性别:女')
@@ -59,6 +64,13 @@ def checkIdcard(idcard):
             print (Errors[2])
     else:
         print (Errors[1])
+        
 if __name__ == '__main__':
     cdcard = input(u'请输入身份证号码:')
     checkIdcard(cdcard)
+
+
+
+
+
+#注：为便于程序的编写及阅读，将“身份证地区代码表”单独编写为python文件“regions.py”。
